@@ -3,6 +3,9 @@ import { render } from "react-dom";
 
 import Form from "react-jsonschema-form";
 
+import '../css/style.css';
+
+
 const schema = {
   title: "Todo",
   type: "object",
