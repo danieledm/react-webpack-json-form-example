@@ -12500,9 +12500,15 @@ var schema = {
   type: "object",
   required: ["title"],
   properties: {
-    title: { type: "string", title: "Title", default: "A new task" },
-    done: { type: "boolean", title: "Done?", default: false }
+    title: { type: "string", title: "Titolo", default: "A new task" },
+    done: { type: "boolean", title: "Done?", default: false },
+    attachment: { type: "array", items: { type: "string", format: "data-url" }, title: "allegato" }
   }
+};
+
+var formData = {
+  title: "il mio primo taskino",
+  done: false
 };
 
 var log = function log(type) {
@@ -12510,17 +12516,10 @@ var log = function log(type) {
 };
 
 (0, _reactDom.render)(_react2.default.createElement(_reactJsonschemaForm2.default, { schema: schema,
+  formData: formData,
   onChange: log("changed"),
   onSubmit: log("submitted"),
   onError: log("errors") }), document.getElementById("app"));
-
-var formData = {
-  title: "First task",
-  done: true
-};
-
-(0, _reactDom.render)(_react2.default.createElement(_reactJsonschemaForm2.default, { schema: schema,
-  formData: formData }), document.getElementById("app"));
 
 /***/ }),
 /* 96 */

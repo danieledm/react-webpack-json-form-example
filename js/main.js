@@ -11,27 +11,24 @@ const schema = {
   type: "object",
   required: ["title"],
   properties: {
-    title: {type: "string", title: "Title", default: "A new task"},
-    done: {type: "boolean", title: "Done?", default: false}
+    title: {type: "string", title: "Titolo", default: "A new task"},
+    done: {type: "boolean", title: "Done?", default: false},
+    attachment: {type: "array", items: { type: "string",  format: "data-url" }, title: "allegato" }
   }
+};
+
+const formData = {
+  title: "il mio primo task",
+  done: true
 };
 
 const log = (type) => console.log.bind(console, type);
 
 render((
   <Form schema={schema}
+        formData={formData}
         onChange={log("changed")}
         onSubmit={log("submitted")}
         onError={log("errors")} />
 ), document.getElementById("app"));
 
-
-const formData = {
-  title: "First task",
-  done: true
-};
-
-render((
-  <Form schema={schema}
-        formData={formData} />
-), document.getElementById("app"));
