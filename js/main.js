@@ -6,6 +6,7 @@ import Form from "react-jsonschema-form";
 import '../css/style.css';
 
 
+
 const schema = {
   title: "Todo",
   type: "object",
@@ -17,18 +18,31 @@ const schema = {
   }
 };
 
-const formData = {
-  title: "il mio primo task",
-  done: true
-};
+const formData = localStorage.dati ? JSON.parse(localStorage.dati) : {done:true, title: "ciccio bello"};
 
 const log = (type) => console.log.bind(console, type);
+
+const onSubmit = ({formData}) => localStorage.dati = JSON.stringify(formData);
+
+const uiSchema = {
+  attachment: {
+    "ui:options":  {
+      orderable: true,
+          addable: true,
+          removable: true
+
+    }
+  }
+}
 
 render((
   <Form schema={schema}
         formData={formData}
         onChange={log("changed")}
-        onSubmit={log("submitted")}
+        uiSchema={uiSchema}
+        onSubmit={onSubmit}
         onError={log("errors")} />
 ), document.getElementById("app"));
+
+
 
