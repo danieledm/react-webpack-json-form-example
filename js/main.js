@@ -8,7 +8,7 @@ import '../css/style.css';
 
 
 const schema = {
-  title: "Todo",
+  title: "Todos",
   type: "object",
   required: ["title"],
   properties: {
@@ -18,7 +18,7 @@ const schema = {
   }
 };
 
-const formData = localStorage.dati ? JSON.parse(localStorage.dati) : {done:true, title: "ciccio bello"};
+const formData = localStorage.dati ? JSON.parse(localStorage.dati) : {done:true, title: "prova"};
 
 const log = (type) => console.log.bind(console, type);
 
@@ -43,6 +43,32 @@ render((
         onSubmit={onSubmit}
         onError={log("errors")} />
 ), document.getElementById("app"));
+
+
+
+
+
+import DropzoneComponent from 'react-dropzone-component';
+
+var componentConfig = {
+    iconFiletypes: ['.jpg', '.png', '.gif'],
+    showFiletypeIcon: true,
+    postUrl: '/uploadHandler'
+};
+
+var djsConfig = { autoProcessQueue: false }
+
+var eventHandlers = { 
+  addedfile: (file) => {console.log(file); return true;} 
+}
+
+
+render(
+    <DropzoneComponent config={componentConfig}
+                       eventHandlers={eventHandlers}
+                       djsConfig={djsConfig} />,
+    document.getElementById('uploader')
+);
 
 
 

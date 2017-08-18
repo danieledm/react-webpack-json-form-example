@@ -1,5 +1,11 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
+@import "~react-dropzone-component/styles/filepicker.css";
+
+@import "~dropzone/dist/min/dropzone.min.css";
+
+
+
 .hello {
     color: red;
 }
